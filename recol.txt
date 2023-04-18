@@ -3,6 +3,8 @@
 docker inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' persn1
 
 
+
+
 ---create images 
 
 docker build --no-cache -t ssh_con:v1 .
