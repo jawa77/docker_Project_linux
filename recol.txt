@@ -1,0 +1,27 @@
+--- find ip of the container
+
+docker inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' persn1
+
+
+---create images 
+
+docker build --no-cache -t ssh_con:v1 .
+
+
+--- create container(destroy when we remove untill it run even restart)
+
+docker run --name per1 -dit --restart unless-stopped ssh_con:v1
+
+
+
+cmnds
+
+docker network ls
+
+docker inspect e7a7629043b6
+
+docker network create -d macvlan --subnet 192.168.211.0/24 --gateway 192.168.211.143 --ip-range 192.168.211.253/32 -o parent=wlp2s0 custummacvlan
+
+docker run --name mac1 --rm -it --ip 192.168.211.200 --network custummacvlan ssh_con:v1 /bin/bash
+
+docker run --name mac1 --network macvlantest ssh_con:v1 /bin/bash
